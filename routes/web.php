@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home/index');
+Route::get('/', 'HomeController@index')->name('home');
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+  Route::resource('users', 'UsersController');
 });
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');

@@ -12,7 +12,10 @@
                       <strong>{{ $user->name }}</strong>
                       <ul>
                         <li>
-                          <a href="/">Home</a>
+                          <a href="{{ route('home') }}">{{ __('Home') }}</a>
+                        </li>
+                        <li>
+                          <a href="{{ route('users.index') }}">{{ __('Users') }}</a>
                         </li>
                       </ul>
                     @endif
