@@ -12,6 +12,12 @@ It requires admin user to be able to manage the users list.
 
   > PUT `/api/users/{user}` Update user attributes.
 
+  > GET `/api/users/{user}` Show user attributes.
+
+  > POST `/api/users` Create a new user.
+
+  > DELETE `/api/users/{user}` Destroy user.
+
 
 ## Rus Application
 
