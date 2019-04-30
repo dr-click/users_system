@@ -1,7 +1,6 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-use App\Models\User;
 use App\Models\Group;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
@@ -17,13 +16,8 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(User::class, function (Faker $faker) {
+$factory->define(Group::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
-        'password' => '$2y$10$CHGFOGUj7W/shjJDqgjsDeVby8nO0QE4kCkbi1VGAlSFUaOEd2hZy', // password
-        'remember_token' => Str::random(10),
-        'group_id' => factory(Group::class)
+        'name' => $faker->name
     ];
 });

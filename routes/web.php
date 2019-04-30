@@ -14,6 +14,9 @@
 Route::get('/', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
   Route::resource('users', 'UsersController');
+  Route::resource('groups', 'GroupsController', ['only' => [
+    'index', 'create', 'store', 'destroy'
+  ]]);
 });
 
 Auth::routes();

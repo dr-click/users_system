@@ -38,8 +38,6 @@ class UsersController extends Controller
     public function create()
     {
         $user = new User;
-        // $user->name = "";
-        // $user->email = "";
         return view('users.create', compact('user'));
     }
 

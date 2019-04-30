@@ -6,17 +6,27 @@ It requires admin user to be able to manage the users list.
 
 ## Available API Call:
 
-  > send `CONTENT_TYPE` with value `application/json` with each request for API JSON response.
+  > send `CONTENT_TYPE` with value `application/json` with each request for API JSON response, All actions require Logged in Admin
 
-  > GET `/api/users` List users from system, it requires Logged in Admin
+  * Users
 
-  > PUT `/api/users/{user}` Update user attributes.
+    > GET `/api/users` List users from system
 
-  > GET `/api/users/{user}` Show user attributes.
+    > PUT `/api/users/{user}` Update user attributes.
 
-  > POST `/api/users` Create a new user.
+    > GET `/api/users/{user}` Show user attributes.
 
-  > DELETE `/api/users/{user}` Destroy user.
+    > POST `/api/users` Create a new user.
+
+    > DELETE `/api/users/{user}` Destroy user.
+
+  * Groups
+
+    > GET `/api/groups` List groups from system
+
+    > POST `/api/groups` Create a new group.
+
+    > DELETE `/api/groups/{group}` Destroy group.
 
 
 ## Rus Application

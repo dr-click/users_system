@@ -17,6 +17,9 @@
                         <li>
                           <a href="{{ route('users.index') }}">{{ __('Users') }}</a>
                         </li>
+                        <li>
+                          <a href="{{ route('groups.index') }}">{{ __('Groups') }}</a>
+                        </li>
                       </ul>
                     @endif
                 </div>
