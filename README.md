@@ -76,6 +76,8 @@ It requires admin user to be able to manage the users list.
 
 ## Tests
 
+  > We have 33 tests, 120 assertions.
+
   > start the server on port 8000 `php artisan serve`
 
   > run test `php vendor/bin/phpunit`

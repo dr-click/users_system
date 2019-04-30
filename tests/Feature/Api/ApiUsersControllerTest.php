@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\User;
+use App\Models\Group;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
@@ -29,6 +30,7 @@ class ApiUsersControllerTest extends TestCase
         $payload = [
             'name' => $user->name . '2',
             'email' => $user->email,
+            'group_id' => $user->group_id,
             'password' => 'password'
         ];
 
@@ -37,6 +39,7 @@ class ApiUsersControllerTest extends TestCase
             ->assertJson([
                 'id' => $user->id,
                 'name' => $user->name . '2',
+                'group_id' => $user->group_id,
                 'email' => $user->email
             ]);
     }

@@ -19,7 +19,18 @@
           @method('PATCH')
           @csrf
           <div class="form-group">
-
+            <label for="first_name">Group:</label>
+            <select class="chosen-select" name="group_id" id="user_group_id">
+              @foreach($groups as $group)
+                  <option value="{{$group->id}}"
+                    @if ($user->group->id && $group->id == old('group_id', $user->group->id))
+                      selected="selected"
+                    @endif
+                  >{{$group->name}}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="form-group">
               <label for="first_name">Name:</label>
               <input type="text" class="form-control" name="name" value={{ $user->name }} />
           </div>

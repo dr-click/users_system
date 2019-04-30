@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Group;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -38,7 +39,8 @@ class UsersController extends Controller
     public function create()
     {
         $user = new User;
-        return view('users.create', compact('user'));
+        $groups = Group::all();
+        return view('users.create', compact('user', 'groups'));
     }
 
     /**
@@ -56,6 +58,7 @@ class UsersController extends Controller
         ]);
 
         $user = new User;
+        $user->group_id = $request->get('group_id');
         $user->name =  $request->get('name');
         $user->email = $request->get('email');
         $user->password = $request->get('password');
@@ -94,7 +97,8 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view('users.edit', compact('user'));
+        $groups = Group::all();
+        return view('users.edit', compact('user', 'groups'));
     }
 
     /**
@@ -113,6 +117,7 @@ class UsersController extends Controller
         ]);
 
         $user = User::find($id);
+        $user->group_id = $request->get('group_id');
         $user->name =  $request->get('name');
         $user->email = $request->get('email');
         $user->password = $request->get('password');

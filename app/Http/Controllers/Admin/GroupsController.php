@@ -74,13 +74,24 @@ class GroupsController extends Controller
     public function destroy(Request $request,$id)
     {
         $group = Group::find($id);
-        $group->delete();
 
-        if ($request->isJson()){
-            return response()->json("", 200);
+        if($group->users->count() > 0 ){
+            if ($request->isJson()){
+                return response()->json("", 405);
+            } else {
+                return redirect('/admin/groups')->with('error', 'Not deleted!');
+            }
+
         } else {
-            return redirect('/admin/groups')->with('success', 'Group deleted!');
+            $group->delete();
+
+            if ($request->isJson()){
+                return response()->json("", 200);
+            } else {
+                return redirect('/admin/groups')->with('success', 'Group deleted!');
+            }
         }
+
     }
 
 }
