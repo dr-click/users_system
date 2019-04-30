@@ -8,9 +8,11 @@ use App\Http\Controllers\Controller;
 
 class UsersController extends Controller
 {
-    public function __construct()
+    public function __construct(Request $request)
     {
-        $this->middleware('auth');
+        if (!$request->isJson()){
+            $this->middleware('auth');
+        }
     }
 
     /**
@@ -18,10 +20,14 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $users = User::all();
-        return view ('users.index', compact('users'));
+        if ($request->isJson()){
+            return $users;
+        } else {
+            return view ('users.index', compact('users'));
+        }
     }
 
     /**
@@ -89,7 +95,11 @@ class UsersController extends Controller
         $user->password = $request->get('password');
         $user->save();
 
-        return redirect('/admin/users')->with('success', 'User updated!');
+        if ($request->isJson()){
+            return response()->json($user, 200);
+        } else {
+            return redirect('/admin/users')->with('success', 'User updated!');
+        }
     }
 
     /**
