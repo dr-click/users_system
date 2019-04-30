@@ -61,4 +61,24 @@ class UsersControllerTest extends TestCase
              ->assertStatus(302)
              ->assertDontSee("Update User");
     }
+
+    public function testShow()
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user)
+             ->get('/admin/users/' . $user->id)
+             ->assertStatus(200)
+             ->assertSee("User Details")
+             ->assertSee($user->name)
+             ->assertSee($user->email);
+    }
+
+    public function testGuestUserShow()
+    {
+        $user = factory(User::class)->create();
+
+        $this->get('/admin/users/' . $user->id)
+             ->assertStatus(302)
+             ->assertDontSee("User Details");
+    }
 }

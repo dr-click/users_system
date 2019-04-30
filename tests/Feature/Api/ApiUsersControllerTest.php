@@ -41,4 +41,14 @@ class ApiUsersControllerTest extends TestCase
             ]);
     }
 
+    public function testShow()
+    {
+        $user = factory(User::class)->create();
+        $this->json('GET', 'api/users/' . $user->id)
+            ->assertStatus(200)
+            ->assertJsonStructure([
+              "id", "name", "email", "email_verified_at", "created_at", "updated_at"
+            ]);
+    }
+
 }

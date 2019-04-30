@@ -59,4 +59,17 @@ class UsersTest extends DuskTestCase
 
         });
     }
+
+    public function testShow()
+    {
+        $user = factory(User::class)->create();
+        $this->browse(function ($browser) use ($user) {
+            $browser->visit($this->url() . '/admin/users/')
+                    ->assertSee("Manage Users")
+                    ->assertSee($user->name)
+                    ->clickLink($user->id)
+                    ->assertSee("User Details");
+
+        });
+    }
 }

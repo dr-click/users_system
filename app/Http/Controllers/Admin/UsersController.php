@@ -57,9 +57,15 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+
+        if ($request->isJson()){
+            return response()->json($user, 200);
+        } else {
+            return view('users.show', compact('user'));
+        }
     }
 
     /**
