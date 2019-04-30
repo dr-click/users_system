@@ -72,4 +72,56 @@ class UsersTest extends DuskTestCase
 
         });
     }
+
+    public function testCreate()
+    {
+        $user = factory(User::class)->create();
+        $this->browse(function ($browser) use ($user) {
+            $browser->visit($this->url() . '/admin/users')
+                    ->assertSee("Manage Users")
+                    ->assertSee($user->name)
+                    ->clickLink('New User')
+                    ->assertSee("Create User");
+
+        });
+    }
+
+    public function testStore()
+    {
+        $user = factory(User::class)->create();
+        $this->browse(function ($browser) use ($user) {
+            $user2 = factory(User::class)->make();
+            $browser->visit($this->url() . '/admin/users')
+                    ->assertSee("Manage Users")
+                    ->assertSee($user->name)
+                    ->clickLink('New User')
+                    ->assertSee("Create User")
+                    ->type('name', $user2->name)
+                    ->type('email', $user2->email)
+                    ->type('password', 'password')
+                    ->press('Create')
+                    ->assertPathIs('/admin/users')
+                    ->assertSee($user2->name);
+
+        });
+    }
+
+    public function testStoreWithInvalidData()
+    {
+        $user = factory(User::class)->create();
+        $this->browse(function ($browser) use ($user) {
+            $browser->visit($this->url() . '/admin/users')
+                    ->assertSee("Manage Users")
+                    ->assertSee($user->name)
+                    ->clickLink('New User')
+                    ->assertSee("Create User")
+                    ->type('name', $user->name)
+                    ->type('email', $user->email)
+                    ->type('password', 'password')
+                    ->press('Create')
+                    ->assertPathIs('/admin/users/create')
+                    ->assertSee("Create User");
+
+        });
+    }
 }

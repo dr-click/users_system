@@ -81,4 +81,23 @@ class UsersControllerTest extends TestCase
              ->assertStatus(302)
              ->assertDontSee("User Details");
     }
+
+    public function testAuthorizedUserCreate()
+    {
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user)
+             ->get('/admin/users/create')
+             ->assertStatus(200)
+             ->assertSee("Create User");
+    }
+
+    public function testGuestUserCreate()
+    {
+        $user = factory(User::class)->create();
+
+        $this->get('/admin/users/create')
+             ->assertStatus(302)
+             ->assertDontSee("Create User");
+    }
 }

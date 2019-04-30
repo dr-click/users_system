@@ -37,7 +37,10 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        $user = new User;
+        // $user->name = "";
+        // $user->email = "";
+        return view('users.create', compact('user'));
     }
 
     /**
@@ -48,7 +51,23 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required|unique:users',
+            'password'=>'required'
+        ]);
+
+        $user = new User;
+        $user->name =  $request->get('name');
+        $user->email = $request->get('email');
+        $user->password = $request->get('password');
+        $user->save();
+
+        if ($request->isJson()){
+            return response()->json($user, 200);
+        } else {
+            return redirect('/admin/users')->with('success', 'User created!');
+        }
     }
 
     /**

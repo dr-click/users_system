@@ -18,5 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('users', 'Api\ApiUsersController', ['only' => [
-    'index', 'create', 'show', 'update'
+    'index', 'store', 'show', 'update'
 ]]);
