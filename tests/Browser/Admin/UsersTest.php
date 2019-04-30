@@ -18,12 +18,44 @@ class UsersTest extends DuskTestCase
         $user = factory(User::class)->create();
         $this->doLogin($user);
         $this->browse(function ($browser) use ($user) {
-            $browser->visit('http://localhost:8000/admin/users')
+            $browser->visit($this->url() . '/admin/users')
                     ->assertSee("Manage Users")
                     ->assertSee($user->name)
                     ->assertSee($user->email)
                     ->assertSee("Edit")
                     ->assertSee("Delete");
+
+        });
+    }
+
+    public function testEdit()
+    {
+        $user = factory(User::class)->create();
+        $this->browse(function ($browser) use ($user) {
+            $browser->visit($this->url() . '/admin/users')
+                    ->assertSee("Manage Users")
+                    ->assertSee($user->name)
+                    ->clickLink('Edit')
+                    ->assertSee("Update User")
+                    ->assertSee("Password");
+
+        });
+    }
+
+    public function testUpdate()
+    {
+        $user = factory(User::class)->create();
+        $this->browse(function ($browser) use ($user) {
+            $browser->visit($this->url() . '/admin/users')
+                    ->assertSee("Manage Users")
+                    ->assertSee($user->name)
+                    ->clickLink('Edit')
+                    ->assertSee("Update User")
+                    ->type('name', $user->name . '2')
+                    ->type('password', 'password')
+                    ->press('Update')
+                    ->assertPathIs('/admin/users')
+                    ->assertSee($user->name . '2');
 
         });
     }

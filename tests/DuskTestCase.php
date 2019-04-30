@@ -30,7 +30,7 @@ abstract class DuskTestCase extends BaseTestCase
      */
     public function url()
     {
-        return 'http://localhost:8000/';
+        return 'http://localhost:8000';
     }
 
     /**
@@ -40,7 +40,7 @@ abstract class DuskTestCase extends BaseTestCase
     public function doLogin($user)
     {
         $this->browse(function ($browser) use ($user) {
-            $browser->visit('http://localhost:8000/login')
+            $browser->visit($this->url() . '/login')
                     ->type('email', $user->email)
                     ->type('password', 'password')
                     ->press('Login')#->dump();
