@@ -4,7 +4,7 @@
 
 It requires admin user to be able to manage the users list.
 
-## Available API Call:
+## Available API Calls:
 
   > send `CONTENT_TYPE` with value `application/json` with each request for API JSON response, All actions require Logged in Admin
 
@@ -29,7 +29,7 @@ It requires admin user to be able to manage the users list.
     > DELETE `/api/groups/{group}` Destroy group.
 
 
-## Rus Application
+## Run Application
 
   > cd project folder
 
