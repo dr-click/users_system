@@ -81,3 +81,27 @@ It requires admin user to be able to manage the users list.
   > start the server on port 8000 `php artisan serve`
 
   > run test `php vendor/bin/phpunit`
+
+## ToDo:
+
+  > Using Middlewares to Restrict Access
+
+  > Add caching (Action and Page caching)
+
+  > Add pagination to users listing
+
+  > Add API documentation tool
+
+  > Add Authentication to the API
+
+  > Use API versioning
+
+  > Include more test coverage
+
+
+## UMLs:
+
+  > UsersSystem.png
+
+  > UsersSystem-DB.png
+
