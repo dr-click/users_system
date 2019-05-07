@@ -23,7 +23,7 @@
             <select class="chosen-select" name="group_id" id="user_group_id">
               @foreach($groups as $group)
                   <option value="{{$group->id}}"
-                    @if ($user->group->id && $group->id == old('group_id', $user->group->id))
+                    @if ($user->group_id && $user->group->id && $group->id == old('group_id', $user->group->id))
                       selected="selected"
                     @endif
                   >{{$group->name}}</option>
